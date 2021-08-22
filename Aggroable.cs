@@ -2,6 +2,6 @@ namespace AggroSystem
 {
     public interface Aggroable : Entity
     {
-        void Aggro();
+        void Aggro(Entity entity);
     }
 }

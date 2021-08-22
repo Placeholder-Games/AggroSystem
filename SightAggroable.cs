@@ -1,6 +1,6 @@
 namespace AggroSystem
 {
-    public interface SeeingAggroable : BlindAggroable
+    public interface SightAggroable : SoundAggroable
     {
         double SightRadius();
     }

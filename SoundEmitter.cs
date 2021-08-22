@@ -7,7 +7,7 @@
             GetManager().EmitSound(this);
         }
 
-        AggroManager GetManager();
-        double GetSoundEntensity();
+        SoundAggroManager GetManager();
+        double GetSoundIntensity();
     }
 }
