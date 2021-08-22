@@ -1,5 +1,3 @@
-using System;
-
 namespace AggroSystem
 {
     public interface Entity
