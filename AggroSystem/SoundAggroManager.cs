@@ -8,9 +8,9 @@ namespace AggroSystem
 
         private List<SoundAggroable> soundAggroables;
 
-        public SoundAggroManager(double SOUND_CONSTANT) 
+        public SoundAggroManager(double soundConstant) 
         {
-            this.soundConstant = SOUND_CONSTANT;
+            this.soundConstant = soundConstant;
 
             soundAggroables = new List<SoundAggroable>();
         }
