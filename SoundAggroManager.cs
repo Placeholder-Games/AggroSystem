@@ -15,19 +15,27 @@ namespace AggroSystem
             soundAggroables = new List<SoundAggroable>();
         }
 
-        public void EmitSound(SoundEmitter emitter)
-        {
-            soundAggroables.ForEach(aggroable => HandleAggroable(aggroable, emitter)); // Can be sped up a bit with for, but we aren't expecting to have tooo many aggroables
-        }
-
-        public void AddBlindAggroables(List<SoundAggroable> aggroables) 
+        public void AddAggroables(params SoundAggroable[] aggroables) 
         {
             soundAggroables.AddRange(aggroables);
         }
 
-        public void RemoveBlindAggroable(SoundAggroable aggroable) 
+        public void AddAggroables(List<SoundAggroable> aggroables) 
+        {
+            soundAggroables.AddRange(aggroables);
+        }
+
+        public void RemoveAggroable(SoundAggroable aggroable) 
         {
             soundAggroables.Remove(aggroable);
+        }
+
+        public void EmitSound(SoundEmitter emitter)
+        {
+            for (int i = 0; i < soundAggroables.Count; i++)
+            {
+                HandleAggroable(soundAggroables[i], emitter);
+            }
         }
 
         protected abstract double AbstractionMultiplier(SoundEmitter source, Entity target);
@@ -44,7 +52,7 @@ namespace AggroSystem
 
         private double UnAbstractedSoundIntensityAt(SoundEmitter source, Entity target)
         {
-            return soundConstant * source.GetSoundIntensity() / source.DistanceSquared(target); //Might cause small bug, if the iteration is too low
+            return soundConstant * source.GetSoundIntensity() / source.DistanceSquared(target); //Might cause small bug, if the iteration is too slow
         } 
     }
 }
