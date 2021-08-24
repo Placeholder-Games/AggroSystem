@@ -4,6 +4,6 @@
     {
         void EmitSound() => GetManager().EmitSound(this);
         SoundAggroManager GetManager();
-        double GetSoundIntensity();
+        float GetSoundIntensity();
     }
 }

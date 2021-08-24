@@ -4,11 +4,11 @@ namespace AggroSystem
 {
     public abstract class SoundAggroManager
     {
-        private readonly double soundConstant;
+        private readonly float soundConstant;
 
         private List<SoundAggroable> soundAggroables;
 
-        public SoundAggroManager(double soundConstant) 
+        public SoundAggroManager(float soundConstant) 
         {
             this.soundConstant = soundConstant;
 
@@ -38,11 +38,11 @@ namespace AggroSystem
             }
         }
 
-        protected abstract double AbstractionMultiplier(SoundEmitter source, Entity target);
+        protected abstract float AbstractionMultiplier(SoundEmitter source, Entity target);
 
         private void HandleAggroable(SoundAggroable aggroable, SoundEmitter source)
         {
-            double intensityAtAggroable = UnAbstractedSoundIntensityAt(source, aggroable) * AbstractionMultiplier(source, aggroable);
+            float intensityAtAggroable = UnAbstractedSoundIntensityAt(source, aggroable) * AbstractionMultiplier(source, aggroable);
 
             if (intensityAtAggroable >= aggroable.GetMinimumSoundIntensity())
             {
@@ -50,7 +50,7 @@ namespace AggroSystem
             }
         }
 
-        private double UnAbstractedSoundIntensityAt(SoundEmitter source, Entity target)
+        private float UnAbstractedSoundIntensityAt(SoundEmitter source, Entity target)
         {
             return soundConstant * source.GetSoundIntensity() / source.DistanceSquared(target); //Might cause small bug, if the iteration is too slow
         } 

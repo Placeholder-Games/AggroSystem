@@ -13,10 +13,10 @@ namespace examples
             SoundEmitter gun = new Gun(soundAggro);
             SightAggroManager sightAggro = new SightAggro(gun);
             
-            SightAggroable farDeer = new Deer("Far Deer", 2, 2);
-            SightAggroable closeDeer = new Deer("Close Deer", 1.2, 1.2);
-            Mob enemyInRange = new Mob("Close Boi", 1, 1);
-            Mob enemyOutsideRange = new Mob("Far Boi", 2, 2);
+            SightAggroable farDeer = new Deer("Far Deer", 2f, 2f);
+            SightAggroable closeDeer = new Deer("Close Deer", 1.2f, 1.2f);
+            Mob enemyInRange = new Mob("Close Boi", 1f, 1f);
+            Mob enemyOutsideRange = new Mob("Far Boi", 2f, 2f);
             
             soundAggro.AddAggroables(enemyInRange, enemyOutsideRange, farDeer, closeDeer);
 
@@ -36,7 +36,7 @@ namespace examples
         {
         }
 
-        protected override double AbstractionMultiplier(SoundEmitter source, Entity target)
+        protected override float AbstractionMultiplier(SoundEmitter source, Entity target)
         {
             return 1;
         }
@@ -56,19 +56,19 @@ namespace examples
             return aggroManager;
         }
 
-        public double GetSoundIntensity()
+        public float GetSoundIntensity()
         {
-            return 20;
+            return 20f;
         }
 
-        public double GetXPos()
+        public float GetXPos()
         {
-            return 0;
+            return 0f;
         }
 
-        public double GetYPos()
+        public float GetYPos()
         {
-            return 0;
+            return 0f;
         }
 
         public override string ToString()
@@ -80,10 +80,10 @@ namespace examples
     class Mob : SoundAggroable
     {
         private readonly String name;
-        private readonly double x;
-        private readonly double y;
+        private readonly float x;
+        private readonly float y;
 
-        public Mob(string name, double x, double y)
+        public Mob(string name, float x, float y)
         {
             this.name = name;
             this.x = x;
@@ -95,17 +95,17 @@ namespace examples
             Console.WriteLine(String.Format("Mob {0} at {1} aggroing to {2}", name, this, entity));
         }
 
-        public double GetMinimumSoundIntensity()
+        public float GetMinimumSoundIntensity()
         {
-            return 5;
+            return 5f;
         }
 
-        public double GetXPos()
+        public float GetXPos()
         {
             return x;
         }
 
-        public double GetYPos()
+        public float GetYPos()
         {
             return y;
         }
@@ -130,13 +130,13 @@ namespace examples
 
     class Deer : Mob, SightAggroable
     {
-        public Deer(string name, double x, double y) : base(name, x, y)
+        public Deer(string name, float x, float y) : base(name, x, y)
         {
         }
 
-        public double SightRadius()
+        public float SightRadius()
         {
-            return 3;
+            return 3f;
         }
     }
 }
